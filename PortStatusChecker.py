@@ -1,9 +1,6 @@
-
 import socket
 import nmap
 
-
-# Your Nmap executable path
 NMAP_SEARCH_PATH = [
     r"C:\Users\ACER\Desktop\Projects_for_Intern\nmap\nmap.exe",
     r"C:\Program Files (x86)\Nmap\nmap.exe",
@@ -62,17 +59,12 @@ def nscanner():
     print("[+] Initializing Nmap...")
 
     try:
-        # Explicitly tell python-nmap where nmap.exe is located.
         nm = nmap.PortScanner(
             nmap_search_path=NMAP_SEARCH_PATH
         )
 
         print(f"[+] Nmap version: {nm.nmap_version()}")
         print("[+] Scanning ports. Please wait...")
-
-        # -sV: Detect service/version information
-        # -sC: Run Nmap's default scripts
-        # -F:  Scan a reduced list of common ports
         nm.scan(
             hosts=target,
             arguments="-sV -sC -F"
